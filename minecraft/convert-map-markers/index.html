@@ -1,1 +1,206 @@
-hello
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js" integrity="sha512-CwxrLIN0dww6lRc/oKeZiI9oGlOob2HPMU0Yu0g+P3/G1cuTii+tt0jpyEKhilfrV7D/zmvKiVPIHUDU6xbBxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./convert.js"></script>"
+
+<link rel="stylesheet" href="./style.css">
+
+<div class="main">
+    <div class="about">
+        Convert map marker definitions
+        from DynMap (<a href="https://github.com/webbukkit/dynmap/wiki/Using-markers">marker documentation</a>)
+        to BlueMap (<a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html">marker documentation</a>).
+    </div>
+    <div class="input">
+        <h4>Input</h4>
+        <label for="input">Content of DynMap markers.yml:</label>
+        <textarea name="input" class="source">
+%YAML 1.1
+---
+icons:
+    mobs.zombiepigman:
+        label: Zombie Pigman
+    mobs.cat:
+        label: Cat
+    structures.temple:
+        label: Temple
+sets:
+    myset:
+        hide: true
+        circles: {
+            }
+        deficon: default
+        areas:
+            aspawnchunks:
+                fillColor: 16711680
+                world: world
+                markup: false
+                ytop: 65.0
+                fillOpacity: 0.35
+                x:
+                - -1329.0
+                - -1609.0
+                - -1609.0
+                - -1329.0
+                strokeWeight: 3
+                z:
+                - -46.0
+                - -46.0
+                - 234.0
+                - 234.0
+                label: Spawn Chunks (+/- 16)
+                ybottom: 61.0
+                strokeColor: 16711680
+                strokeOpacity: 0.8
+            awitchfarm:
+                fillColor: 15894886
+                world: world
+                markup: false
+                ytop: 65.0
+                fillOpacity: 0.3
+                x:
+                - -833.0
+                - -533.0
+                strokeWeight: 3
+                z:
+                - 510.0
+                - 810.0
+                label: Witch Farm
+                ybottom: 65.0
+                strokeColor: 0
+                strokeOpacity: 0.5
+        label: MySet
+        markers:
+            marker_34:
+                world: world
+                markup: false
+                x: -1027.0
+                icon: tower
+                y: 37.0
+                z: 734.0
+                label: Bunker
+            marker_32:
+                world: world
+                markup: false
+                x: -674.0
+                icon: default
+                y: 68.0
+                z: 2875.0
+                label: Cooked Mutton
+            marker_2:
+                world: world
+                markup: false
+                x: 641.0
+                icon: world
+                y: 65.0
+                z: -3407.0
+                label: Cow farm
+            marker_29:
+                world: world
+                markup: false
+                x: -824.0
+                icon: default
+                y: 64.0
+                z: 2987.0
+                label: Lake Mutton
+            marker_19:
+                world: world_nether
+                markup: false
+                x: -1014.0
+                icon: default
+                y: 91.0
+                z: 2880.0
+                label: Mt. Mutton
+        lines:
+            line_1:
+                world: world
+                markup: false
+                x:
+                - 69.0
+                - 69.0
+                - 67.0
+                - 67.0
+                - 63.0
+                - 63.0
+                - 65.0
+                - 65.0
+                - -35.0
+                strokeWeight: 3
+                y:
+                - 120.0
+                - 120.0
+                - 120.0
+                - 120.0
+                - 120.0
+                - 121.0
+                - 121.0
+                - 121.0
+                - 121.0
+                z:
+                - 618.0
+                - 621.0
+                - 621.0
+                - 617.0
+                - 617.0
+                - 738.0
+                - 738.0
+                - 1875.0
+                - 1875.0
+                label: line_1
+                strokeColor: 16711680
+                strokeOpacity: 0.8
+        layerprio: 0
+</textarea>
+        <div class="actions">
+            <input type="button" id="convert-button" value="Convert">
+        </div>
+    </div>
+
+    <div class="options">
+        <h4>Options</h4>
+
+        <div class="row">
+            <label for="world">World name:</label>
+            <div class="select-editable">
+                <select onchange="this.nextElementSibling.value=this.value">
+                    <option value=""></option>
+                    <option value="world">world</option>
+                    <option value="world_nether">world_nether</option>
+                    <option value="world_the_end">world_the_end</option>
+                </select>
+                <input name="world" type="text" class="world" value="world">
+            </div>
+            <span class="descr">DynMap markers.yml contains markers from all worlds, choose one.</span>
+        </div>
+
+        <div class="row">
+            <label for="world">Excluded sets:</label>
+            <textarea name="excluded-sets" class="excluded-sets">
+offline_players
+spawn_beds
+</textarea>
+        </div>
+
+        <div class="row">
+            <label for="world">Marker icon mapping:</label>
+            <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
+        </div>
+    </div>
+
+    <div class="output">
+        <h4>Output</h4>
+        <label for="output">BlueMap "marker-sets" entry, paste this into world.conf:</label>
+        <textarea name="output" class="source">
+marker-sets: {
+    example-marker-set: {
+        label: "Example Marker Set"
+        markers: {
+            example-poi-marker: {
+                type: "poi"
+                position: { x: 1, y: 64, z: -23 }
+                label: "Example POI Marker"
+            }
+        }
+    }
+}
+</textarea>
+    </div>
+</div>
