@@ -312,15 +312,15 @@ function convertButtonClick(ui) {
 document.addEventListener('DOMContentLoaded', function() {
     var ui = {
         inputEditor: CodeMirror.fromTextArea(document.querySelector('.input .source'), {
-            lineNumbers: true,
-            mode: 'text/x-yaml'
+            mode: 'text/x-yaml',
+            lineNumbers: true
         }),
         outputEditor: CodeMirror.fromTextArea(document.querySelector('.output .source'), {
-            lineNumbers: true,
             mode: {
                 name: 'javascript',
                 json: true
-            }
+            },
+            lineNumbers: true
         }),
         options: {
             world: document.querySelector('.options .world'),
@@ -347,7 +347,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 ui.inputEditor.setCursor({
                     line: exception.mark.line,
                     ch: exception.mark.column
-                })
+                });
+                ui.inputEditor.scrollIntoView(null, 40);
             }
         }
     });
