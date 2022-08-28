@@ -302,17 +302,26 @@ function loadOptions(ui) {
 
 function convertButtonClick(ui) {
     var options = loadOptions(ui);
-    var inputSource = ui.input.value;
+    var inputText = ui.inputEditor.getValue();
 
-    var outputSource = convert(inputSource, options);
+    var outputText = convert(inputText, options);
 
-    ui.outputEditor.setValue(outputSource);
+    ui.outputEditor.setValue(outputText);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     var ui = {
-        input: document.querySelector('.input .source'),
-        output: document.querySelector('.output .source'),
+        inputEditor: CodeMirror.fromTextArea(document.querySelector('.input .source'), {
+            lineNumbers: true,
+            mode: 'text/x-yaml'
+        }),
+        outputEditor: CodeMirror.fromTextArea(document.querySelector('.output .source'), {
+            lineNumbers: true,
+            mode: {
+                name: 'javascript',
+                json: true
+            }
+        }),
         options: {
             world: document.querySelector('.options .world'),
             excludedSets: document.querySelector('.options .excluded-sets'),
@@ -320,24 +329,18 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         convertButton: document.querySelector('#convert-button')
     };
-    ui.inputEditor = CodeMirror.fromTextArea(ui.input, {
-        lineNumbers: true,
-        mode: 'text/x-yaml'
-    });
-    ui.outputEditor = CodeMirror.fromTextArea(ui.output, {
-        lineNumbers: true,
-        mode: {
-            name: 'javascript',
-            json: true
-        }
-    });
 
     httpGetAsync('./input-example.yml', function(data) {
         ui.inputEditor.setValue(data);
     });
 
     ui.convertButton.addEventListener('click', function() {
+        try {
        	convertButtonClick(ui);
+        } catch (exception) {
+            var errorMoessage = 'Error: ' + JSON.stringify(exception, null, 2);
+            ui.outputEditor.setValue(errorMoessage);
+        }
     });
 });
 
