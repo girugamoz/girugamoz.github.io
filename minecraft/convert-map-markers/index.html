@@ -1,22 +1,26 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js" integrity="sha512-CwxrLIN0dww6lRc/oKeZiI9oGlOob2HPMU0Yu0g+P3/G1cuTii+tt0jpyEKhilfrV7D/zmvKiVPIHUDU6xbBxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/yaml/yaml.min.js" integrity="sha512-+aXDZ93WyextRiAZpsRuJyiAZ38ztttUyO/H3FZx4gOAOv4/k9C6Um1CvHVtaowHZ2h7kH0d+orWvdBLPVwb4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js" integrity="sha512-I6CdJdruzGtvDyvdO4YsiAq+pkWf2efgd1ZUSK2FnM/u2VuRASPC7GowWQrWyjxCZn6CT89s3ddGI+be0Ak9Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js" integrity="sha512-CwxrLIN0dww6lRc/oKeZiI9oGlOob2HPMU0Yu0g+P3/G1cuTii+tt0jpyEKhilfrV7D/zmvKiVPIHUDU6xbBxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/yaml/yaml.min.js" integrity="sha512-+aXDZ93WyextRiAZpsRuJyiAZ38ztttUyO/H3FZx4gOAOv4/k9C6Um1CvHVtaowHZ2h7kH0d+orWvdBLPVwb4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js" integrity="sha512-I6CdJdruzGtvDyvdO4YsiAq+pkWf2efgd1ZUSK2FnM/u2VuRASPC7GowWQrWyjxCZn6CT89s3ddGI+be0Ak9Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src="./convert.js"></script>
-<link rel="stylesheet" href="./style.css">
-
-<div class="main">
-    <div class="about">
-        Convert map marker definitions
-        from DynMap (<a href="https://github.com/webbukkit/dynmap/wiki/Using-markers">marker documentation</a>)
-        to BlueMap (<a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html">marker documentation</a>).
-    </div>
-    <div class="input">
-        <h4>Input</h4>
-        <label for="input">Content of DynMap markers.yml:</label>
-        <textarea name="input" class="source">
+        <script src="./convert.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="about">
+                <h1>Convert map marker definitions</h1>
+                <h2>from DynMap to BlueMap</h2>
+                <a href="https://github.com/webbukkit/dynmap/wiki/Using-markers">DynMap marker documentation</a>,
+                <a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html">BlueMap marker documentation</a>
+            </div>
+            <div class="input">
+                <h3>Input</h3>
+                <label for="input">Contents of DynMap <span class="highlight-text">markers.yml</span>:</label>
+                <textarea name="input" class="source">
 %YAML 1.1
 ---
 icons:
@@ -152,60 +156,50 @@ sets:
                 strokeColor: 16711680
                 strokeOpacity: 0.8
         layerprio: 0
-
-</textarea>
-        <div class="actions">
-            <input type="button" id="convert-button" value="Convert">
-        </div>
-    </div>
-
-    <div class="options">
-        <h4>Options</h4>
-
-        <div class="row">
-            <label for="world">World name:</label>
-            <div class="select-editable">
-                <select onchange="this.nextElementSibling.value=this.value">
-                    <option value=""></option>
-                    <option value="world">world</option>
-                    <option value="world_nether">world_nether</option>
-                    <option value="world_the_end">world_the_end</option>
-                </select>
-                <input name="world" type="text" class="world" value="world">
+        </textarea>
+                <div class="actions">
+                    <input type="button" id="convert-button" value="Convert">
+                </div>
             </div>
-            <span class="descr">DynMap markers.yml contains markers from all worlds, choose one.</span>
-        </div>
 
-        <div class="row">
-            <label for="world">Excluded sets:</label>
-            <textarea name="excluded-sets" class="excluded-sets">
+            <div class="options">
+                <h3>Options</h3>
+
+                <div class="row">
+                    <label for="world">World name:</label>
+                    <div class="select-editable">
+                        <select onchange="this.nextElementSibling.value=this.value">
+                            <option value=""></option>
+                            <option value="world">world</option>
+                            <option value="world_nether">world_nether</option>
+                            <option value="world_the_end">world_the_end</option>
+                        </select>
+                        <input name="world" type="text" class="world" value="world">
+                    </div>
+                    <div class="descr">DynMap <span class="highlight-text">markers.yml</span> contains markers from all worlds, choose one.</div>
+                </div>
+
+                <div class="row">
+                    <label for="world">Excluded sets:</label>
+                    <textarea name="excluded-sets" class="excluded-sets">
 offline_players
 spawn_beds
 </textarea>
-        </div>
+                    <div class="descr">One set name per line.</div>
+                </div>
 
-        <div class="row">
-            <label for="world">Marker icon mapping:</label>
-            <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
-        </div>
-    </div>
+                <div class="row">
+                    <label for="world">Marker icon mapping:</label>
+                    <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
+                    <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
+                </div>
+            </div>
 
-    <div class="output">
-        <h4>Output</h4>
-        <label for="output">BlueMap "marker-sets" entry, paste this into world.conf:</label>
-        <textarea name="output" class="source">
-marker-sets: {
-    example-marker-set: {
-        label: "Example Marker Set"
-        markers: {
-            example-poi-marker: {
-                type: "poi"
-                position: { x: 1, y: 64, z: -23 }
-                label: "Example POI Marker"
-            }
-        }
-    }
-}
-</textarea>
-    </div>
-</div>
+            <div class="output">
+                <h3>Output</h3>
+                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span>:</label>
+                <textarea name="output" class="source"></textarea>
+            </div>
+        </div>
+    </body>
+</html>

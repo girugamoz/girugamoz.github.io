@@ -1,21 +1,37 @@
+body {
+    width: 70%;
+    margin: 0px auto;
+    background-color: lightgray;
+}
+
 .input label,
 .output label {
     display: block;
 }
 
-.input textarea,
-.output textarea {
-    min-width: 400px;
-    min-height: 180px;
+.highlight-text {
+    font-weight: bolder;
+}
+
+.descr {
+    display: inline-block;
 }
 
 .CodeMirror {
-    width: 50%;
     margin: 10px 0;
+    max-width: 1000px;
 }
 
 .options .excluded-sets {
-    min-height: 70px;
+    min-height: 100px;
+}
+
+.options .row {
+    margin-bottom: 20px;
+}
+
+.icon-mapping {
+    min-width: 280px;
 }
 
 .select-editable {
