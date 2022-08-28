@@ -257,7 +257,7 @@ function convert(inputSource, options) {
     options.convertIcon = function(icon) {
         return this.iconMapping.replace('%icon%', icon);
     };
-    
+
     var state = {
     	options: options,
         stats: newStats()
@@ -278,9 +278,19 @@ function convert(inputSource, options) {
     return outputSource;
 }
 
+function httpGetAsync(url, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", url, true); // true for asynchronous
+    xmlHttp.send(null);
+}
+
 //
 // BEGIN UI code
-// 
+//
 
 function loadOptions(ui) {
     return {
@@ -296,7 +306,7 @@ function convertButtonClick(ui) {
 
     var outputSource = convert(inputSource, options);
 
-    ui.output.value = outputSource;
+    ui.outputEditor.setValue(outputSource);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -310,16 +320,27 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         convertButton: document.querySelector('#convert-button')
     };
+    ui.inputEditor = CodeMirror.fromTextArea(ui.input, {
+        lineNumbers: true,
+        mode: 'text/x-yaml'
+    });
+    ui.outputEditor = CodeMirror.fromTextArea(ui.output, {
+        lineNumbers: true,
+        mode: {
+            name: 'javascript',
+            json: true
+        }
+    });
+
+    httpGetAsync('./input-example.yml', function(data) {
+        ui.inputEditor.setValue(data);
+    });
 
     ui.convertButton.addEventListener('click', function() {
-    	try {
-        	convertButtonClick(ui);
-        } catch (exception) {
-        	console.log(exception);
-        }
+       	convertButtonClick(ui);
     });
 });
 
 //
 // END UI code
-// 
+//
