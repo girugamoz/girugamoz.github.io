@@ -1,12 +1,16 @@
 body {
     width: 70%;
-    margin: 0px auto;
+    margin: 20px auto;
     background-color: lightgray;
 }
 
 .input label,
 .output label {
     display: block;
+}
+
+#convert-button {
+    min-width: 200px;
 }
 
 .highlight-text {
