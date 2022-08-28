@@ -336,10 +336,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ui.convertButton.addEventListener('click', function() {
         try {
-       	convertButtonClick(ui);
+       	    convertButtonClick(ui);
         } catch (exception) {
-            var errorMoessage = 'Error: ' + JSON.stringify(exception, null, 2);
-            ui.outputEditor.setValue(errorMoessage);
+            var errorMessage = 'Error: ' + JSON.stringify(exception, null, 2);
+            ui.outputEditor.setValue(errorMessage);
+
+            if (exception.name === 'YAMLException' &&
+                !!exception.mark && typeof exception.mark.line === 'number') {
+                ui.inputEditor.focus();
+                ui.inputEditor.setCursor({
+                    line: exception.mark.line,
+                    ch: exception.mark.column
+                })
+            }
         }
     });
 });
