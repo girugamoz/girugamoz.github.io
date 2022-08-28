@@ -59,8 +59,8 @@ function formatStats(stats) {
     return statsText;
 }
 
-function parseInput(inputSource) {
-    var input = jsyaml.load(inputSource);
+function parseInput(inputText) {
+    var input = jsyaml.load(inputText);
     return input;
 }
 
