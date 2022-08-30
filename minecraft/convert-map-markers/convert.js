@@ -309,6 +309,18 @@ function convertButtonClick(ui) {
     ui.outputEditor.setValue(outputText);
 }
 
+function addPrivacyFriendlyTrackingScript() {
+    var isDevelopmentEnvironment = window.location.protocol === 'file:';
+    if (isDevelopmentEnvironment) {
+        return;
+    }
+
+    var scriptElement = document.createElement('script');
+    scriptElement.setAttribute('src','https://umami.bavariancripple.de/umami.js');
+    scriptElement.setAttribute('data-website-id', '4e154ab2-ea24-4094-b59f-0afc8e07c5d7');
+    document.head.appendChild(scriptElement);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     var ui = {
         inputEditor: CodeMirror.fromTextArea(document.querySelector('.input .source'), {
@@ -333,6 +345,8 @@ document.addEventListener('DOMContentLoaded', function() {
     httpGetAsync('./input-example.yml', function(data) {
         ui.inputEditor.setValue(data);
     });
+
+    addPrivacyFriendlyTrackingScript();
 
     ui.convertButton.addEventListener('click', function() {
         try {
