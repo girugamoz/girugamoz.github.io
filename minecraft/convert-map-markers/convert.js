@@ -200,6 +200,10 @@ function convertMarkerSet(inputSet, state) {
     }).forEach((entry) => {
         var inputMarkerCategory = entry[0];
         var markerConvertFunction = entry[1];
+        var existsMarkerCategory = typeof inputSet[inputMarkerCategory] !== 'undefined';
+        if (!existsMarkerCategory) {
+            return;
+        }
         var inputMarkerArray = objectKeysToArray(inputSet[inputMarkerCategory], '__marker_name__');
         var outputMarkerArray = inputMarkerArray
             .filter((marker) => {
@@ -288,6 +292,24 @@ function httpGetAsync(url, callback) {
     xmlHttp.send(null);
 }
 
+function errorPropertyReplacer(key, value) {
+    if (value instanceof Error) {
+        var error = {};
+        Object.getOwnPropertyNames(value).forEach(function (propName) {
+            error[propName] = value[propName];
+            if (propName === 'stack' && !!error[propName]) {
+                error[propName] = error[propName].split('\n')
+            }
+        });
+        return error;
+    }
+    return value;
+}
+
+function stringifyError(error) {
+    return JSON.stringify(error, errorPropertyReplacer, 2);
+}
+
 //
 // BEGIN UI code
 //
@@ -307,18 +329,6 @@ function convertButtonClick(ui) {
     var outputText = convert(inputText, options);
 
     ui.outputEditor.setValue(outputText);
-}
-
-function addPrivacyFriendlyTrackingScript() {
-    var isDevelopmentEnvironment = window.location.protocol === 'file:';
-    if (isDevelopmentEnvironment) {
-        return;
-    }
-
-    var scriptElement = document.createElement('script');
-    scriptElement.setAttribute('src','https://umami.bavariancripple.de/umami.js');
-    scriptElement.setAttribute('data-website-id', '4e154ab2-ea24-4094-b59f-0afc8e07c5d7');
-    document.head.appendChild(scriptElement);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -346,23 +356,28 @@ document.addEventListener('DOMContentLoaded', function() {
         ui.inputEditor.setValue(data);
     });
 
-    addPrivacyFriendlyTrackingScript();
-
     ui.convertButton.addEventListener('click', function() {
         try {
        	    convertButtonClick(ui);
         } catch (exception) {
-            var errorMessage = 'Error: ' + JSON.stringify(exception, null, 2);
+            var errorMessage = 'Error: ' + stringifyError(exception);
             ui.outputEditor.setValue(errorMessage);
 
-            if (exception.name === 'YAMLException' &&
-                !!exception.mark && typeof exception.mark.line === 'number') {
+            var isInputParseError = exception.name === 'YAMLException';
+            var existsInputErrorLocation = !!exception.mark &&
+                typeof exception.mark.line === 'number';
+
+            if (isInputParseError && existsInputErrorLocation) {
                 ui.inputEditor.focus();
                 ui.inputEditor.setCursor({
                     line: exception.mark.line,
                     ch: exception.mark.column
                 });
                 ui.inputEditor.scrollIntoView(null, 40);
+            }
+
+            if (!isInputParseError) {
+                umami.trackEvent('convert-error', errorMessage);
             }
         }
     });
