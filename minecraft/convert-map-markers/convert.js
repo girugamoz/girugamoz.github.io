@@ -91,26 +91,8 @@ function convertCoordArrays(xArray, yArray, zArray) {
     return result;
 }
 
-function convertSimpleMarker(inputMarker, state) {
-    var outputMarker = {
-        __marker_name__: inputMarker.__marker_name__,
-        type: 'poi',
-        position: {
-            x: inputMarker.x,
-            y: inputMarker.y,
-            z: inputMarker.z
-        },
-        label: inputMarker.label
-    };
 
-    if (inputMarker.icon && inputMarker.icon !== 'default') {
-        outputMarker.icon = state.options.convertIcon(inputMarker.icon);
-    }
-
-    return outputMarker;
-}
-
-function convertComplexMarker(inputMarker, outputMarkerType, state) {
+function createOutputMarker(inputMarker, outputMarkerType, state) {
     var outputMarker = {
         __marker_name__: inputMarker.__marker_name__,
         type: outputMarkerType
@@ -118,7 +100,31 @@ function convertComplexMarker(inputMarker, outputMarkerType, state) {
 
     if (inputMarker.label) {
         outputMarker.label = inputMarker.label;
+        //outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
     }
+
+    if (!!inputMarker.icon && inputMarker.icon !== 'default') {
+        outputMarker.icon = state.options.convertIcon(inputMarker.icon);
+    }
+
+    return outputMarker;
+}
+
+function convertSimpleMarker(inputMarker, state) {
+    var outputMarker = createOutputMarker(inputMarker, 'poi', state);
+
+    outputMarker.position = {
+        x: inputMarker.x,
+        y: inputMarker.y,
+        z: inputMarker.z
+    };
+
+    return outputMarker;
+}
+
+function convertComplexMarker(inputMarker, outputMarkerType, state) {
+    var outputMarker = createOutputMarker(inputMarker, outputMarkerType, state);
+
     if (inputMarker.strokeWeight) {
         outputMarker['line-width'] = inputMarker.strokeWeight;
     }
