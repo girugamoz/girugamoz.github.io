@@ -103,10 +103,6 @@ function createOutputMarker(inputMarker, outputMarkerType, state) {
         //outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
     }
 
-    if (!!inputMarker.icon && inputMarker.icon !== 'default') {
-        outputMarker.icon = state.options.convertIcon(inputMarker.icon);
-    }
-
     return outputMarker;
 }
 
@@ -118,6 +114,14 @@ function convertSimpleMarker(inputMarker, state) {
         y: inputMarker.y,
         z: inputMarker.z
     };
+
+    var inputIcon = state.defaultInputIcon;
+    if (!!inputMarker.icon && inputMarker.icon !== 'default') {
+        inputIcon = inputMarker.icon;
+    }
+    if (inputIcon) {
+        outputMarker.icon = state.options.convertIcon(inputIcon);
+    }
 
     return outputMarker;
 }
@@ -198,6 +202,9 @@ function convertMarkerSet(inputSet, state) {
         'default-hidden': !!inputSet.hide, // TODO: wrong output attribute name? or ignored by BlueMap?
         markers: {}
     };
+    var outputMarkerCount = 0;
+
+    state.defaultInputIcon = !!inputSet.deficon ? inputSet.deficon : null;
 
     Object.entries({
         'markers': convertSimpleMarker,
@@ -229,9 +236,12 @@ function convertMarkerSet(inputSet, state) {
         writeArrayElementsToObject(outputMarkerArray, '__marker_name__', outputSet.markers);
         state.stats.markers.input += inputMarkerArray.length;
         state.stats.markers.output += outputMarkerArray.length;
+        outputMarkerCount += outputMarkerArray.length;
     });
 
-    return outputSet;
+    state.defaultInputIcon = null;
+
+    return outputMarkerCount > 0 ? outputSet : null;
 }
 
 function convertMarkerSets(inputSets, state) {
@@ -270,6 +280,7 @@ function convert(inputSource, options) {
 
     var state = {
     	options: options,
+        defaultInputIcon: null,
         stats: newStats()
     }
 
@@ -283,7 +294,7 @@ function convert(inputSource, options) {
 
     finalizeStats(state.stats);
     var statsText = formatStats(state.stats);
-    outputSource += '\n' + statsText;
+    outputSource += '\n' + statsText + '\n';
 
     return outputSource;
 }
