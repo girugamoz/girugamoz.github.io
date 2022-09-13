@@ -120,7 +120,11 @@ function convertSimpleMarker(inputMarker, state) {
         inputIcon = inputMarker.icon;
     }
     if (inputIcon) {
-        outputMarker.icon = state.options.convertIcon(inputIcon);
+        outputMarker.icon = state.options.mapIconName(inputIcon);
+        var iconAnchor = state.options.getIconAnchor(inputIcon);
+        if (iconAnchor) {
+            outputMarker.anchor = iconAnchor;
+        }
     }
 
     return outputMarker;
@@ -268,14 +272,20 @@ function convertMarkerSets(inputSets, state) {
 }
 
 function convert(inputSource, options) {
-    options.isMatchingWorld = function(worldName) {
+    options.isMatchingWorld = function isMatchingWorld(worldName) {
         return !!this.worldName ? worldName === this.worldName : true;
     };
-    options.isSetIncluded = function(setName) {
+    options.isSetIncluded = function isSetIncluded(setName) {
         return this.excludedSets.indexOf(setName) < 0;
     };
-    options.convertIcon = function(icon) {
-        return this.iconMapping.replace('%icon%', icon);
+    options.mapIconName = function mapIconName(inputIconName) {
+        return this.iconMapping.replace('%icon%', inputIconName);
+    };
+    options.getIconAnchor = function getIconAnchor(inputIconName) {
+        if (!!inputIconName) {
+            return this.iconAnchors[inputIconName] || this.iconAnchors['*'] || null;
+        }
+        return null;
     };
 
     var state = {
@@ -332,15 +342,29 @@ function stringifyError(error) {
 //
 
 function loadOptions(ui) {
-    return {
+    var options = {
         worldName: ui.options.world.value,
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
         iconMapping: ui.options.iconMapping.value
     };
+
+    try {
+        options.iconAnchors = JSON.parse(ui.iconAnchorEditor.getValue()) || {};
+    } catch (exception) {
+        var errorMessage = 'Invalid icon anchor mapping: ' + stringifyError(exception);
+        ui.outputEditor.setValue(errorMessage);
+        return null;
+    }
+
+    return options;
 }
 
 function convertButtonClick(ui) {
     var options = loadOptions(ui);
+    if (!options) {
+        return;
+    }
+
     var inputText = ui.inputEditor.getValue();
 
     var outputText = convert(inputText, options);
@@ -352,6 +376,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var ui = {
         inputEditor: CodeMirror.fromTextArea(document.querySelector('.input .source'), {
             mode: 'text/x-yaml',
+            lineNumbers: true
+        }),
+        iconAnchorEditor: CodeMirror.fromTextArea(document.querySelector('.options .icon-anchors'), {
+            mode: {
+                name: 'javascript',
+                json: true
+            },
             lineNumbers: true
         }),
         outputEditor: CodeMirror.fromTextArea(document.querySelector('.output .source'), {

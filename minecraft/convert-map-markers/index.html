@@ -39,6 +39,8 @@ icons:
         label: Cat
     structures.temple:
         label: Temple
+    my.special.icon:
+        label: My special icon
 sets:
     myset:
         hide: true
@@ -90,7 +92,7 @@ sets:
                 world: world
                 markup: false
                 x: -1027.0
-                icon: tower
+                icon: my.special.icon
                 y: 37.0
                 z: 734.0
                 label: Bunker
@@ -202,6 +204,20 @@ spawn_beds
                     <label for="world">Marker icon mapping:</label>
                     <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
                     <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
+                </div>
+
+                <div class="row">
+                    <label for="world">Icon anchor mapping:</label>
+                    <textarea name="iconanchors" class="icon-anchors">
+{
+    "*": { "x": 8, "y": 8 },
+    "my.special.icon": { "x": 16, "y": 16 }
+}
+</textarea>
+                    <div class="descr">BlueMap <a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html#poi-markers">POI markers</a> support an optional icon offset, called
+                        <span class="highlight-text">anchor</span>. This maps DynMap icon names to BlueMap anchors.
+                        Use the optional icon name <span class="highlight-text">*</span> to specify a default anchor for all POI marker icons.
+                    </div>
                 </div>
             </div>
 

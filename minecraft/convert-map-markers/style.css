@@ -34,8 +34,11 @@ body {
     margin-bottom: 20px;
 }
 
-.icon-mapping {
-    min-width: 280px;
+.icon-mapping, .icon-anchors {
+    min-width: 320px;
+}
+.icon-anchors {
+    min-height: 120px;
 }
 
 .select-editable {
