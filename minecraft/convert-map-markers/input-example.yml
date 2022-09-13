@@ -214,10 +214,10 @@ sets:
             than33l:
                 world: world
                 markup: false
-                x: 116.0
+                x: -26.0
                 icon: offlineuser
-                y: 73.0
-                z: 328.0
+                y: 106.0
+                z: 281.0
                 label: than33l
         lines: {
             }
@@ -288,14 +288,6 @@ sets:
                 y: 19.0
                 z: 2705.0
                 label: Mineshaft Station
-            marker_55:
-                world: world_nether
-                markup: false
-                x: 62.0
-                icon: portal
-                y: 120.0
-                z: 339.0
-                label: Mineshaft Station
             marker_11:
                 world: world_nether
                 markup: false
@@ -304,6 +296,14 @@ sets:
                 y: 119.0
                 z: 107.0
                 label: Portal to the End
+            marker_55:
+                world: world_nether
+                markup: false
+                x: 62.0
+                icon: portal
+                y: 120.0
+                z: 339.0
+                label: Mineshaft Station
             marker_52:
                 world: world
                 markup: false
@@ -1006,14 +1006,6 @@ sets:
                 y: 64.0
                 z: 1440.0
                 label: Mineshaft
-            monument,-5703040,-17960800:
-                world: world
-                markup: false
-                x: -5703040.0
-                icon: structures.monument
-                y: 64.0
-                z: -1.79608E7
-                label: Ocean Monument
             desertpyramid,17859648,4911696:
                 world: world
                 markup: false
@@ -1022,6 +1014,14 @@ sets:
                 y: 64.0
                 z: 4911696.0
                 label: Desert Pyramid
+            monument,-5703040,-17960800:
+                world: world
+                markup: false
+                x: -5703040.0
+                icon: structures.monument
+                y: 64.0
+                z: -1.79608E7
+                label: Ocean Monument
             ruinedportal,16322752,-13535616:
                 world: world
                 markup: false
@@ -1030,14 +1030,6 @@ sets:
                 y: 64.0
                 z: -1.3535616E7
                 label: Ruined Portal
-            mineshaft,560,2704:
-                world: world
-                markup: false
-                x: 560.0
-                icon: structures.mineshaft
-                y: 64.0
-                z: 2704.0
-                label: Mineshaft
             village,15634656,-29244400:
                 world: world
                 markup: false
@@ -1046,6 +1038,14 @@ sets:
                 y: 64.0
                 z: -2.92444E7
                 label: Village
+            mineshaft,560,2704:
+                world: world
+                markup: false
+                x: 560.0
+                icon: structures.mineshaft
+                y: 64.0
+                z: 2704.0
+                label: Mineshaft
             mineshaft,576,0:
                 world: world
                 markup: false
@@ -1054,22 +1054,6 @@ sets:
                 y: 64.0
                 z: 0.0
                 label: Mineshaft
-            stronghold,-1032,23640:
-                world: world
-                markup: false
-                x: -1032.0
-                icon: structures.stronghold
-                y: 64.0
-                z: 23640.0
-                label: Stronghold
-            ruinedportal,-3136,3856:
-                world: world
-                markup: false
-                x: -3136.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 3856.0
-                label: Ruined Portal
             netherfossil,-672,1344:
                 world: world_nether
                 markup: false
@@ -1078,6 +1062,22 @@ sets:
                 y: 64.0
                 z: 1344.0
                 label: Nether Fossil
+            ruinedportal,-3136,3856:
+                world: world
+                markup: false
+                x: -3136.0
+                icon: structures.ruinedportal
+                y: 64.0
+                z: 3856.0
+                label: Ruined Portal
+            stronghold,-1032,23640:
+                world: world
+                markup: false
+                x: -1032.0
+                icon: structures.stronghold
+                y: 64.0
+                z: 23640.0
+                label: Stronghold
             ruinedportal,-2864,6000:
                 world: world
                 markup: false
@@ -1174,14 +1174,6 @@ sets:
                 y: 64.0
                 z: 1328.0
                 label: Mineshaft
-            pillageroutpost,-17747456,-23892384:
-                world: world
-                markup: false
-                x: -1.7747456E7
-                icon: structures.pillageroutpost
-                y: 64.0
-                z: -2.3892384E7
-                label: Pillager Outpost
             ruinedportal,-4384,4560:
                 world: world
                 markup: false
@@ -1190,6 +1182,14 @@ sets:
                 y: 64.0
                 z: 4560.0
                 label: Ruined Portal
+            pillageroutpost,-17747456,-23892384:
+                world: world
+                markup: false
+                x: -1.7747456E7
+                icon: structures.pillageroutpost
+                y: 64.0
+                z: -2.3892384E7
+                label: Pillager Outpost
             ruinedportal,-19639632,2530848:
                 world: world
                 markup: false
@@ -1197,14 +1197,6 @@ sets:
                 icon: structures.ruinedportal
                 y: 64.0
                 z: 2530848.0
-                label: Ruined Portal
-            ruinedportal,-1696,208:
-                world: world_nether
-                markup: false
-                x: -1696.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 208.0
                 label: Ruined Portal
             fortress,480,2624:
                 world: world_nether
@@ -1262,14 +1254,6 @@ sets:
                 y: 64.0
                 z: 1344.0
                 label: Nether Fossil
-            netherfossil,-768,288:
-                world: world_nether
-                markup: false
-                x: -768.0
-                icon: structures.netherfossil
-                y: 64.0
-                z: 288.0
-                label: Nether Fossil
             ruinedportal,4576784,29701296:
                 world: world
                 markup: false
@@ -1278,6 +1262,14 @@ sets:
                 y: 64.0
                 z: 2.9701296E7
                 label: Ruined Portal
+            netherfossil,-768,288:
+                world: world_nether
+                markup: false
+                x: -768.0
+                icon: structures.netherfossil
+                y: 64.0
+                z: 288.0
+                label: Nether Fossil
             mineshaft,400,1248:
                 world: world
                 markup: false
@@ -1422,14 +1414,6 @@ sets:
                 y: 64.0
                 z: 1.7362944E7
                 label: Ruined Portal
-            bastionremnant,-3184,4528:
-                world: world_nether
-                markup: false
-                x: -3184.0
-                icon: structures.bastionremnant
-                y: 64.0
-                z: 4528.0
-                label: Bastion Remnant
             desertpyramid,-976,0:
                 world: world
                 markup: false
@@ -1550,14 +1534,6 @@ sets:
                 y: 64.0
                 z: 2.7582384E7
                 label: Ruined Portal
-            fortress,-1152,464:
-                world: world_nether
-                markup: false
-                x: -1152.0
-                icon: structures.fortress
-                y: 64.0
-                z: 464.0
-                label: Nether Fortress
             fortress,-640,1536:
                 world: world_nether
                 markup: false
@@ -1574,22 +1550,6 @@ sets:
                 y: 64.0
                 z: 1376.0
                 label: Nether Fossil
-            fortress,-1216,288:
-                world: world_nether
-                markup: false
-                x: -1216.0
-                icon: structures.fortress
-                y: 64.0
-                z: 288.0
-                label: Nether Fortress
-            fortress,2912,6112:
-                world: world_nether
-                markup: false
-                x: 2912.0
-                icon: structures.fortress
-                y: 64.0
-                z: 6112.0
-                label: Nether Fortress
             ruinedportal,-20067056,-20949424:
                 world: world
                 markup: false
@@ -1622,14 +1582,6 @@ sets:
                 y: 64.0
                 z: 2496.0
                 label: Mineshaft
-            ruinedportal,976,432:
-                world: world_nether
-                markup: false
-                x: 976.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 432.0
-                label: Ruined Portal
             village,-7919520,-19934688:
                 world: world
                 markup: false
@@ -1670,14 +1622,6 @@ sets:
                 y: 64.0
                 z: 160.0
                 label: Bastion Remnant
-            ruinedportal,2032,6528:
-                world: world_nether
-                markup: false
-                x: 2032.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 6528.0
-                label: Ruined Portal
             mineshaft,544,1648:
                 world: world
                 markup: false
@@ -1846,14 +1790,6 @@ sets:
                 y: 64.0
                 z: -2884928.0
                 label: Ruined Portal
-            bastionremnant,-2000,80:
-                world: world_nether
-                markup: false
-                x: -2000.0
-                icon: structures.bastionremnant
-                y: 64.0
-                z: 80.0
-                label: Bastion Remnant
             ruinedportal,944,-288:
                 world: world_nether
                 markup: false
@@ -1870,14 +1806,6 @@ sets:
                 y: 64.0
                 z: 2.1363216E7
                 label: Ruined Portal
-            fortress,-2688,4880:
-                world: world_nether
-                markup: false
-                x: -2688.0
-                icon: structures.fortress
-                y: 64.0
-                z: 4880.0
-                label: Nether Fortress
             monument,-2593552,2752288:
                 world: world
                 markup: false
@@ -1958,14 +1886,6 @@ sets:
                 y: 64.0
                 z: 1648.0
                 label: Mineshaft
-            ruinedportal,816,1456:
-                world: world_nether
-                markup: false
-                x: 816.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 1456.0
-                label: Ruined Portal
             mineshaft,-3136,4656:
                 world: world
                 markup: false
@@ -2150,14 +2070,6 @@ sets:
                 y: 64.0
                 z: -19496.0
                 label: Stronghold
-            fortress,-1728,2000:
-                world: world_nether
-                markup: false
-                x: -1728.0
-                icon: structures.fortress
-                y: 64.0
-                z: 2000.0
-                label: Nether Fortress
             village,-17747440,-23892128:
                 world: world
                 markup: false
@@ -2302,14 +2214,6 @@ sets:
                 y: 64.0
                 z: 1952.0
                 label: Mineshaft
-            ruinedportal,-1392,592:
-                world: world_nether
-                markup: false
-                x: -1392.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 592.0
-                label: Ruined Portal
             ruinedportal,-20722880,-1555648:
                 world: world
                 markup: false
@@ -2550,14 +2454,6 @@ sets:
                 y: 64.0
                 z: 6832464.0
                 label: Village
-            ruinedportal,-3104,4976:
-                world: world_nether
-                markup: false
-                x: -3104.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 4976.0
-                label: Ruined Portal
             ruinedportal,13353104,21577616:
                 world: world
                 markup: false
@@ -2622,14 +2518,6 @@ sets:
                 y: 64.0
                 z: 2.3101472E7
                 label: Ruined Portal
-            ruinedportal,-1216,112:
-                world: world_nether
-                markup: false
-                x: -1216.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 112.0
-                label: Ruined Portal
             mineshaft,736,2208:
                 world: world
                 markup: false
@@ -2654,14 +2542,6 @@ sets:
                 y: 64.0
                 z: 1344.0
                 label: Nether Fossil
-            bastionremnant,1840,6336:
-                world: world_nether
-                markup: false
-                x: 1840.0
-                icon: structures.bastionremnant
-                y: 64.0
-                z: 6336.0
-                label: Bastion Remnant
             netherfossil,32,960:
                 world: world_nether
                 markup: false
@@ -2702,14 +2582,6 @@ sets:
                 y: 64.0
                 z: 448.0
                 label: Nether Fossil
-            fortress,-1440,448:
-                world: world_nether
-                markup: false
-                x: -1440.0
-                icon: structures.fortress
-                y: 64.0
-                z: 448.0
-                label: Nether Fortress
             ruinedportal,12165296,-12920880:
                 world: world
                 markup: false
@@ -2717,14 +2589,6 @@ sets:
                 icon: structures.ruinedportal
                 y: 64.0
                 z: -1.292088E7
-                label: Ruined Portal
-            ruinedportal,-1136,48:
-                world: world_nether
-                markup: false
-                x: -1136.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 48.0
                 label: Ruined Portal
             ruinedportal,-5702176,-17960224:
                 world: world
@@ -2822,14 +2686,6 @@ sets:
                 y: 64.0
                 z: 2928.0
                 label: Mineshaft
-            fortress,-2064,976:
-                world: world_nether
-                markup: false
-                x: -2064.0
-                icon: structures.fortress
-                y: 64.0
-                z: 976.0
-                label: Nether Fortress
             netherfossil,-736,256:
                 world: world_nether
                 markup: false
@@ -2982,14 +2838,6 @@ sets:
                 y: 64.0
                 z: -112.0
                 label: Nether Fortress
-            ruinedportal,576,2448:
-                world: world_nether
-                markup: false
-                x: 576.0
-                icon: structures.ruinedportal
-                y: 64.0
-                z: 2448.0
-                label: Ruined Portal
         lines: {
             }
         layerprio: 10
@@ -3079,59 +2927,21 @@ sets:
                 y: 91.0
                 z: 2880.0
                 label: Mt. Mutton
-        lines:
-            line_1:
-                world: world_nether
-                markup: false
-                x:
-                - 69.0
-                - 69.0
-                - 67.0
-                - 67.0
-                - 63.0
-                - 63.0
-                - 65.0
-                - 65.0
-                - -35.0
-                strokeWeight: 3
-                y:
-                - 120.0
-                - 120.0
-                - 120.0
-                - 120.0
-                - 120.0
-                - 121.0
-                - 121.0
-                - 121.0
-                - 121.0
-                z:
-                - 618.0
-                - 621.0
-                - 621.0
-                - 617.0
-                - 617.0
-                - 738.0
-                - 738.0
-                - 1875.0
-                - 1875.0
-                label: line_1
-                strokeColor: 16711680
-                strokeOpacity: 0.8
         layerprio: 0
-    s_rail_network:
+    s_rail_stations:
         hide: true
         circles: {
             }
-        deficon: zkn.rail.platform
+        deficon: zkn.rail.station
         areas: {
             }
-        label: Rail Network
+        label: Rail Stations
         markers:
             m_hqstation:
                 world: world
                 markup: false
                 x: -9.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 62.0
                 z: 274.0
                 label: HQ Station
@@ -3139,7 +2949,7 @@ sets:
                 world: world
                 markup: false
                 x: -375.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 70.0
                 z: 442.0
                 label: Race Track / Skeleton Farm
@@ -3147,7 +2957,7 @@ sets:
                 world: world
                 markup: false
                 x: -688.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 70.0
                 z: 623.0
                 label: Witch Farm
@@ -3155,7 +2965,7 @@ sets:
                 world: world
                 markup: false
                 x: -988.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 64.0
                 z: 775.0
                 label: Slime Farm
@@ -3163,7 +2973,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -125.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 117.0
                 z: 94.0
                 label: Slime Farm
@@ -3171,7 +2981,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -185.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 118.0
                 z: 17.0
                 label: Mob Farm
@@ -3179,7 +2989,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -1306.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 1179.0
                 label: OMShNF
@@ -3187,7 +2997,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 7.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 116.0
                 label: Elytra Deck
@@ -3195,7 +3005,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 32.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 116.0
                 label: Gold Farm
@@ -3203,7 +3013,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 276.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 121.0
                 z: 827.0
                 label: Jungle Temple
@@ -3211,7 +3021,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -611.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -658.0
                 label: Ice Plains
@@ -3219,7 +3029,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -19.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 60.0
                 label: Fatscho
@@ -3227,7 +3037,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -1541.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 1194.0
                 label: Woodland Mansion
@@ -3235,7 +3045,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -36.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 108.0
                 label: End
@@ -3243,7 +3053,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -37.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -367.0
                 label: Guardian Farm
@@ -3251,7 +3061,7 @@ sets:
                 world: world
                 markup: false
                 x: -44.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 104.0
                 z: 429.0
                 label: Fatscho
@@ -3259,7 +3069,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -645.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -553.0
                 label: Dark Manor
@@ -3267,7 +3077,7 @@ sets:
                 world: world
                 markup: false
                 x: -378.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 66.0
                 z: -32.0
                 label: Phönix Grotte
@@ -3275,7 +3085,7 @@ sets:
                 world: world
                 markup: false
                 x: 103.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 68.0
                 z: 294.0
                 label: Hauptbahnhof
@@ -3283,7 +3093,7 @@ sets:
                 world: world
                 markup: false
                 x: 70.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 106.0
                 z: 167.0
                 label: Tatteh
@@ -3291,7 +3101,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -177.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -354.0
                 label: Phönix Monument
@@ -3299,7 +3109,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -37.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -187.0
                 label: Northern Village
@@ -3307,7 +3117,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -37.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -2.0
                 label: Phönix Grotte
@@ -3315,7 +3125,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 65.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 338.0
                 label: Mineshaft Station
@@ -3323,7 +3133,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -64.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -139.0
                 label: Witherskelett/Lohen Farm
@@ -3331,7 +3141,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -1164.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 2001.0
                 label: Ice Plains Spikes
@@ -3339,7 +3149,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 40.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 53.0
                 label: Floink
@@ -3347,7 +3157,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -6.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 267.0
                 label: Nether Festung2
@@ -3355,7 +3165,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 88.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 3.0
                 label: Stalce
@@ -3363,7 +3173,7 @@ sets:
                 world: world
                 markup: false
                 x: 257.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 64.0
                 z: 459.0
                 label: Ponyente Floink
@@ -3371,7 +3181,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -355.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 620.0
                 label: Mesa
@@ -3379,7 +3189,7 @@ sets:
                 world: world
                 markup: false
                 x: 1237.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 74.0
                 z: 5616.0
                 label: South_Monument
@@ -3387,7 +3197,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -1.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: -572.0
                 label: Mushroom Island
@@ -3395,7 +3205,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: 36.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 120.0
                 z: 183.0
                 label: Iron Towers
@@ -3403,7 +3213,7 @@ sets:
                 world: world
                 markup: false
                 x: 1951.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 75.0
                 z: 5891.0
                 label: Jungle
@@ -3411,7 +3221,7 @@ sets:
                 world: world_nether
                 markup: false
                 x: -46.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 119.0
                 z: -426.0
                 label: Three Monuments
@@ -3419,7 +3229,7 @@ sets:
                 world: world
                 markup: false
                 x: 1951.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 75.0
                 z: 5891.0
                 label: Jungle
@@ -3427,7 +3237,7 @@ sets:
                 world: world
                 markup: false
                 x: -497.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 70.0
                 z: 2884.0
                 label: Mutton Station
@@ -3435,7 +3245,7 @@ sets:
                 world: world
                 markup: false
                 x: 491.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 71.0
                 z: 2043.0
                 label: Hippodrom
@@ -3443,7 +3253,7 @@ sets:
                 world: world
                 markup: false
                 x: 222.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 59.0
                 z: 443.0
                 label: Rail Switch Floink
@@ -3451,7 +3261,7 @@ sets:
                 world: world
                 markup: false
                 x: -670.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 101.0
                 z: 360.0
                 label: Southwest Airport
@@ -3459,7 +3269,7 @@ sets:
                 world: world
                 markup: false
                 x: 547.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 19.0
                 z: 2705.0
                 label: Mineshaft Station
@@ -3467,7 +3277,7 @@ sets:
                 world: world
                 markup: false
                 x: 284.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 64.0
                 z: 899.0
                 label: Gold Farm Nether Portal
@@ -3475,7 +3285,7 @@ sets:
                 world: world
                 markup: false
                 x: 312.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 65.0
                 z: 987.0
                 label: Gold Farm Monster Portal
@@ -3483,10 +3293,22 @@ sets:
                 world: world
                 markup: false
                 x: 516.0
-                icon: zkn.rail.switch
+                icon: zkn.rail.station
                 y: 65.0
                 z: 138.0
                 label: Stalce
+        lines: {
+            }
+    s_rail_network:
+        hide: true
+        circles: {
+            }
+        deficon: zkn.rail.station
+        areas: {
+            }
+        label: Rail Network
+        markers: {
+            }
         lines:
             line_11:
                 world: world
@@ -5704,6 +5526,43 @@ sets:
                 - 827.0
                 label: S6a
                 strokeColor: 4363835
+                strokeOpacity: 0.8
+            line_001:
+                world: world_nether
+                markup: false
+                x:
+                - 69.0
+                - 69.0
+                - 67.0
+                - 67.0
+                - 63.0
+                - 63.0
+                - 65.0
+                - 65.0
+                - -35.0
+                strokeWeight: 3
+                y:
+                - 120.0
+                - 120.0
+                - 120.0
+                - 120.0
+                - 120.0
+                - 121.0
+                - 121.0
+                - 121.0
+                - 121.0
+                z:
+                - 618.0
+                - 621.0
+                - 621.0
+                - 617.0
+                - 617.0
+                - 738.0
+                - 738.0
+                - 1875.0
+                - 1875.0
+                label: line_1
+                strokeColor: 16711680
                 strokeOpacity: 0.8
             line_26:
                 world: world
