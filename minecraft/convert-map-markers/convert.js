@@ -282,10 +282,14 @@ function convert(inputSource, options) {
         return this.iconMapping.replace('%icon%', inputIconName);
     };
     options.getIconAnchor = function getIconAnchor(inputIconName) {
-        if (!!inputIconName) {
-            return this.iconAnchors[inputIconName] || this.iconAnchors['*'] || null;
+        if (!inputIconName) {
+            return null;
         }
-        return null;
+        var anchor = this.iconAnchors[inputIconName] || this.iconAnchors['*'] || null;
+        return !anchor ? null : {
+            x: Math.round(anchor.x),
+            y: Math.round(anchor.y)
+        }
     };
 
     var state = {

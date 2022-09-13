@@ -92,7 +92,7 @@ sets:
                 world: world
                 markup: false
                 x: -1027.0
-                icon: my.special.icon
+                icon: zkn.rail.platform
                 y: 37.0
                 z: 734.0
                 label: Bunker
@@ -100,7 +100,7 @@ sets:
                 world: world
                 markup: false
                 x: -674.0
-                icon: default
+                icon: vehicles.explosive-minecart
                 y: 68.0
                 z: 2875.0
                 label: Cooked Mutton
@@ -211,12 +211,22 @@ spawn_beds
                     <textarea name="iconanchors" class="icon-anchors">
 {
     "*": { "x": 8, "y": 8 },
-    "my.special.icon": { "x": 16, "y": 16 }
+    "vehicles.boat": {"x": 4, "y": 3},
+    "vehicles.explosive-minecart": {"x": 4, "y": 3.5},
+    "vehicles.hopper-minecart": {"x": 4, "y": 3.5},
+    "vehicles.minecart": {"x": 4, "y": 3.5},
+    "vehicles.powered-minecart": {"x": 4, "y": 3.5},
+    "vehicles.spawner-minecart": {"x": 4, "y": 3.5},
+    "vehicles.storage-minecart": {"x": 4, "y": 3.5},
+    "zkn.rail.platform": {"x": 16, "y": 16}
 }
 </textarea>
                     <div class="descr">BlueMap <a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html#poi-markers">POI markers</a> support an optional icon offset, called
-                        <span class="highlight-text">anchor</span>. This maps DynMap icon names to BlueMap anchors.
-                        Use the optional icon name <span class="highlight-text">*</span> to specify a default anchor for all POI marker icons.
+                        <span class="highlight-text">anchor</span>. This configuration option maps DynMap icon names to BlueMap anchors.
+                        Optionally you can use the icon name <span class="highlight-text">*</span> to specify a default anchor for all POI marker icons.
+                        <br>
+                        Imagemagick's <a href="https://imagemagick.org/script/identify.php">identify</a> tool can calculate the center of your icons, e.g.:
+                        <pre>identify -format '"%t": {"x": %[fx:w/2], "y": %[fx:h/2]},\n' *.png</pre>
                     </div>
                 </div>
             </div>
