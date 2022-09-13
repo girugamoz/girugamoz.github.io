@@ -48,6 +48,7 @@ function finalizeStats(stats) {
 
 function formatStats(stats) {
     stats['converted-on'] = (new Date()).toLocaleString();
+    stats['converted-by'] = 'https://girugamoz.github.io/minecraft/convert-map-markers/';
 
     var statsText = ('"conversion-result": ' + JSON.stringify(stats, null, 4))
         .split('\n')
