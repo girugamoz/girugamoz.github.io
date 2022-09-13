@@ -189,6 +189,10 @@ function convertAreaMarker(inputMarker, state) {
         ];
     }
 
+    if (outputMarker.label) {
+        outputMarker.detail = outputMarker.label;
+    }
+
     if (outputMarkerType === 'shape') {
         outputMarker['shape-y'] = inputMarker.ytop;
     } else {
