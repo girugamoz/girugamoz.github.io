@@ -101,7 +101,7 @@ function createOutputMarker(inputMarker, outputMarkerType, state) {
 
     if (inputMarker.label) {
         outputMarker.label = inputMarker.label;
-        //outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
+        outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
     }
 
     return outputMarker;
@@ -350,6 +350,22 @@ function stringifyError(error) {
 // BEGIN UI code
 //
 
+function getJsonErrorPos(errorMessage) {
+    if (!errorMessage) {
+        return null;
+    }
+
+    var match = errorMessage.match(/in JSON at position ([0-9]+)/g);
+    if (!match || !match.length) {
+        return null;
+    }
+
+    var s = match[0];
+    s = s.substring('in JSON at position '.length);
+    var pos = parseInt(s);
+    return Number.isNaN(pos) ? null : pos;
+}
+
 function loadOptions(ui) {
     var options = {
         worldName: ui.options.world.value,
@@ -362,6 +378,13 @@ function loadOptions(ui) {
     } catch (exception) {
         var errorMessage = 'Invalid icon anchor mapping: ' + stringifyError(exception);
         ui.outputEditor.setValue(errorMessage);
+
+        var jsonErrorPos = getJsonErrorPos(errorMessage);
+        if (jsonErrorPos) {
+            var editorPos = ui.iconAnchorEditor.posFromIndex(jsonErrorPos);
+            ui.iconAnchorEditor.setCursor(editorPos);
+            ui.iconAnchorEditor.focus();
+        }
         return null;
     }
 
@@ -417,12 +440,13 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
        	    convertButtonClick(ui);
         } catch (exception) {
-            var errorMessage = 'Error: ' + stringifyError(exception);
-            ui.outputEditor.setValue(errorMessage);
-
             var isInputParseError = exception.name === 'YAMLException';
             var existsInputErrorLocation = !!exception.mark &&
                 typeof exception.mark.line === 'number';
+
+            var errorMessage = (isInputParseError ? 'Invalid input: ' : 'Error: ') +
+                stringifyError(exception);
+            ui.outputEditor.setValue(errorMessage);
 
             if (isInputParseError && existsInputErrorLocation) {
                 ui.inputEditor.focus();
