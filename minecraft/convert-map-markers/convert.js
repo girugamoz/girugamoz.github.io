@@ -27,7 +27,8 @@ function objectKeysToArray(object, keyAttr) {
 
 function newStats() {
     return {
-        'converted-on': null,
+        errors: [],
+        warnings: [],
         sets: {
             input: 0,
             output: 0,
@@ -37,24 +38,27 @@ function newStats() {
             input: 0,
             output: 0,
             skipped: 0
-        }
+        },
+        'converted-on': null,
+        'converted-by': 'https://girugamoz.github.io/minecraft/convert-map-markers/'
     };
 }
 
 function finalizeStats(stats) {
-    //stats.sets.skipped = stats.sets.input - stats.sets.output;
-    //stats.markers.skipped = stats.markers.input - stats.markers.output;
+    stats['converted-on'] = (new Date()).toLocaleString();
+
+    if (stats.errors.length === 0) {
+        delete stats['errors'];
+    }
+    if (stats.warnings.length === 0) {
+        delete stats['warnings'];
+    }
 }
 
 function formatStats(stats) {
-    stats['converted-on'] = (new Date()).toLocaleString();
-    stats['converted-by'] = 'https://girugamoz.github.io/minecraft/convert-map-markers/';
-
     var statsText = ('"conversion-result": ' + JSON.stringify(stats, null, 4))
         .split('\n')
-        .map((line) => {
-            return '#   ' + line
-        })
+        .map((line) => ('#   ' + line))
         .join('\n');
 
     return statsText;
@@ -76,6 +80,30 @@ function convertColor(colorAsNumber, opacity) {
     outputColor.a = opacity;
 
     return outputColor;
+}
+
+function checkMaxCoordDistance(markerName, position, state) {
+    if (typeof state.options.warnMaxCoordinateDistance !== 'number') {
+        return;
+    }
+
+    if (markerName === 'marker_19') {
+        console.log('hi');
+    }
+
+    var warnDistance = state.options.warnMaxCoordinateDistance;
+    var isWithinWarnDistance =
+        (position.x < 0 ? -1 * position.x : position.x) <= warnDistance &&
+        (position.y < 0 ? -1 * position.y : position.y) <= warnDistance &&
+        (position.z < 0 ? -1 * position.z : position.z) <= warnDistance;
+    if (isWithinWarnDistance) {
+        return;
+    }
+
+    var warningMessage = 'Marker \'' + markerName + '\': ' +
+        'position is outside of warning distance (' + warnDistance + '): ' +
+        'x: ' + position.x + ', ' + 'y: ' + position.y + ', ' + 'z: ' + position.z;
+    state.stats.warnings.push(warningMessage);
 }
 
 function convertCoordArrays(xArray, yArray, zArray) {
@@ -111,12 +139,15 @@ function createOutputMarker(inputMarker, outputMarkerType, state) {
 
 function convertSimpleMarker(inputMarker, state) {
     var outputMarker = createOutputMarker(inputMarker, 'poi', state);
-
-    outputMarker.position = {
+    var position = {
         x: inputMarker.x,
         y: inputMarker.y,
         z: inputMarker.z
     };
+
+    checkMaxCoordDistance(outputMarker.__marker_name__, position, state);
+
+    outputMarker.position = position;
 
     var inputIcon = state.defaultInputIcon;
     if (!!inputMarker.icon && inputMarker.icon !== 'default') {
@@ -373,7 +404,8 @@ function loadOptions(ui) {
         worldName: ui.options.world.value,
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
         iconMapping: ui.options.iconMapping.value,
-        appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked
+        appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked,
+        warnMaxCoordinateDistance: false //100 * 1000
     };
 
     try {
