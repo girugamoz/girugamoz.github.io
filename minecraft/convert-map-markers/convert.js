@@ -101,7 +101,9 @@ function createOutputMarker(inputMarker, outputMarkerType, state) {
 
     if (inputMarker.label) {
         outputMarker.label = inputMarker.label;
-        outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
+        if (state.options.appendMarkerNameToLabel) {
+            outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
+        }
     }
 
     return outputMarker;
@@ -370,20 +372,21 @@ function loadOptions(ui) {
     var options = {
         worldName: ui.options.world.value,
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
-        iconMapping: ui.options.iconMapping.value
+        iconMapping: ui.options.iconMapping.value,
+        appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked
     };
 
     try {
-        options.iconAnchors = JSON.parse(ui.iconAnchorEditor.getValue()) || {};
+        options.iconAnchors = JSON.parse(ui.options.iconAnchorEditor.getValue()) || {};
     } catch (exception) {
         var errorMessage = 'Invalid icon anchor mapping: ' + stringifyError(exception);
         ui.outputEditor.setValue(errorMessage);
 
         var jsonErrorPos = getJsonErrorPos(errorMessage);
         if (jsonErrorPos) {
-            var editorPos = ui.iconAnchorEditor.posFromIndex(jsonErrorPos);
-            ui.iconAnchorEditor.setCursor(editorPos);
-            ui.iconAnchorEditor.focus();
+            var editorPos = ui.options.iconAnchorEditor.posFromIndex(jsonErrorPos);
+            ui.options.iconAnchorEditor.setCursor(editorPos);
+            ui.options.iconAnchorEditor.focus();
         }
         return null;
     }
@@ -410,13 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mode: 'text/x-yaml',
             lineNumbers: true
         }),
-        iconAnchorEditor: CodeMirror.fromTextArea(document.querySelector('.options .icon-anchors'), {
-            mode: {
-                name: 'javascript',
-                json: true
-            },
-            lineNumbers: true
-        }),
         outputEditor: CodeMirror.fromTextArea(document.querySelector('.output .source'), {
             mode: {
                 name: 'javascript',
@@ -427,7 +423,15 @@ document.addEventListener('DOMContentLoaded', function() {
         options: {
             world: document.querySelector('.options .world'),
             excludedSets: document.querySelector('.options .excluded-sets'),
-            iconMapping: document.querySelector('.options .icon-mapping')
+            iconMapping: document.querySelector('.options .icon-mapping'),
+            iconAnchorEditor: CodeMirror.fromTextArea(document.querySelector('.options .icon-anchors'), {
+                mode: {
+                    name: 'javascript',
+                    json: true
+                },
+                lineNumbers: true
+            }),
+            appendMarkerNameToLabel: document.querySelector('.options .append-marker-name-to-label'),
         },
         convertButton: document.querySelector('#convert-button')
     };
