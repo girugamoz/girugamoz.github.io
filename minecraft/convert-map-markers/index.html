@@ -16,19 +16,19 @@
         <link rel="stylesheet" href="./style.css">
 
         <title>Convert Minecraft map markers</title>
-        <meta name="description" content="Convert map marker definitions from DynMap to BlueMap"/>
+        <meta name="description" content="Convert Minecraft map marker definitions from DynMap to BlueMap"/>
     </head>
     <body>
         <div class="main">
             <div class="about">
-                <h1>Convert map marker definitions</h1>
+                <h1>Convert Minecraft map marker definitions</h1>
                 <h2>from DynMap to BlueMap</h2>
                 Marker documentation: <a href="https://github.com/webbukkit/dynmap/wiki/Using-markers">DynMap</a>,
                 <a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html">BlueMap</a>
             </div>
             <div class="input">
                 <h3>Input</h3>
-                <label for="input">Contents of DynMap <span class="highlight-text">markers.yml</span>:</label>
+                <label for="input">Contents of DynMap <span class="highlight-text">markers.yml</span>: </label>
                 <textarea name="input" class="source">
 %YAML 1.1
 ---
@@ -178,7 +178,7 @@ sets:
                 <h3>Options</h3>
 
                 <div class="row">
-                    <label for="world">World name:</label>
+                    <label for="world">World name: </label>
                     <div class="select-editable">
                         <select onchange="this.nextElementSibling.value=this.value">
                             <option value=""></option>
@@ -192,7 +192,7 @@ sets:
                 </div>
 
                 <div class="row">
-                    <label for="world">Excluded sets:</label>
+                    <label for="world">Excluded sets: </label>
                     <textarea name="excluded-sets" class="excluded-sets">
 offline_players
 spawn_beds
@@ -201,13 +201,13 @@ spawn_beds
                 </div>
 
                 <div class="row">
-                    <label for="world">Marker icon mapping:</label>
+                    <label for="world">Marker icon mapping: </label>
                     <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
                     <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
                 </div>
 
                 <div class="row">
-                    <label for="world">Icon anchor mapping:</label>
+                    <label for="world">Icon anchor mapping: </label>
                     <textarea name="iconanchors" class="icon-anchors">
 {
     "*": { "x": 8, "y": 8 },
@@ -222,10 +222,10 @@ spawn_beds
 }
 </textarea>
                     <div class="descr">BlueMap <a href="https://bluemap.bluecolored.de/wiki/customization/Markers.html#poi-markers">POI markers</a> support an optional icon offset, called
-                        <span class="highlight-text">anchor</span>. This configuration option maps DynMap icon names to BlueMap anchors. Fractions will be rounded to the nearest integer.
+                        <span class="highlight-text">anchor</span>. This configuration option uses JSON syntax to map DynMap icon names to BlueMap anchors. Fractions will be rounded to the nearest integer.
                         Optionally you can use the icon name <span class="highlight-text">*</span> to specify a default anchor for all POI marker icons.
                         <br>
-                        Imagemagick's <a href="https://imagemagick.org/script/identify.php">identify</a> tool can calculate the center of your icons, e.g.:
+                        Imagemagick's <a href="https://imagemagick.org/script/identify.php">identify</a> tool can calculate the center of your icons, e.g. (don't forget to remove the last trailing comma if you use this command):
                         <pre>identify -format '"%t": {"x": %[fx:w/2], "y": %[fx:h/2]},\n' *.png</pre>
                     </div>
                 </div>
@@ -233,7 +233,7 @@ spawn_beds
 
             <div class="output">
                 <h3>Output</h3>
-                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span>:</label>
+                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span>: </label>
                 <textarea name="output" class="source"></textarea>
             </div>
 
