@@ -397,7 +397,7 @@ function getJsonErrorPos(errorMessage) {
 
 function loadOptions(ui) {
     var options = {
-        worldName: ui.options.world.value,
+        worldName: ui.options.worldName.value,
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
         iconMapping: ui.options.iconMapping.value,
         appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked,
@@ -448,8 +448,9 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             lineNumbers: true
         }),
+        outputConfFileLabel: document.querySelector('.output-conf-file'),
         options: {
-            world: document.querySelector('.options .world'),
+            worldName: document.querySelector('.options .world-name'),
             excludedSets: document.querySelector('.options .excluded-sets'),
             iconMapping: document.querySelector('.options .icon-mapping'),
             iconAnchorEditor: CodeMirror.fromTextArea(document.querySelector('.options .icon-anchors'), {
@@ -494,6 +495,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    window.updateOutputConfFileLabel = function () {
+        var worldName = ui.options.worldName.value.trim() || 'world';
+        var outputConfFile = worldName + '.conf';
+        ui.outputConfFileLabel.textContent = outputConfFile;
+    }
+    ui.options.worldName.addEventListener('change', updateOutputConfFileLabel);
+    ui.options.worldName.addEventListener('input', updateOutputConfFileLabel);
+    ui.options.worldName.addEventListener('paste', updateOutputConfFileLabel);
 });
 
 //

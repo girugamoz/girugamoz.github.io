@@ -184,7 +184,7 @@ sets:
 
             <div class="output">
                 <h3>Output</h3>
-                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span>:</label>
+                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="output-conf-file highlight-text">world.conf</span>:</label>
                 <textarea name="output" class="source"></textarea>
             </div>
 
@@ -192,21 +192,21 @@ sets:
                 <h3>Options</h3>
 
                 <div class="row">
-                    <label for="world">World name</label>
+                    <label for="world-name">World name</label>
                     <div class="select-editable editabletext">
-                        <select onchange="this.nextElementSibling.value=this.value" class="monospace">
+                        <select onchange="this.nextElementSibling.value=this.value; window.updateOutputConfFileLabel();" class="monospace">
                             <option value=""></option>
                             <option value="world">world</option>
                             <option value="world_nether">world_nether</option>
                             <option value="world_the_end">world_the_end</option>
                         </select>
-                        <input name="world" type="text" class="world monospace" value="world" spellcheck="false">
+                        <input name="world-name" type="text" class="world-name monospace" value="world" spellcheck="false">
                     </div>
                     <div class="descr">DynMap <span class="highlight-text">markers.yml</span> contains markers from all worlds, choose one.</div>
                 </div>
 
                 <div class="row">
-                    <label for="world">Excluded sets</label>
+                    <label for="excluded-sets">Excluded sets</label>
                     <textarea name="excluded-sets" class="excluded-sets monospace editabletext" spellcheck="false">
 offline_players
 spawn_beds
@@ -215,14 +215,14 @@ spawn_beds
                 </div>
 
                 <div class="row">
-                    <label for="world">Marker icon mapping</label>
-                    <input name="world" type="text" class="icon-mapping monospace editabletext" value="assets/markers/%icon%.png" spellcheck="false">
+                    <label for="icon-mapping">Marker icon mapping</label>
+                    <input name="icon-mapping" type="text" class="icon-mapping monospace editabletext" value="assets/markers/%icon%.png" spellcheck="false">
                     <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
                 </div>
 
                 <div class="row">
-                    <label for="world">Icon anchor mapping</label>
-                    <textarea name="iconanchors" class="icon-anchors">
+                    <label for="icon-anchors">Icon anchor mapping</label>
+                    <textarea name="icon-anchors" class="icon-anchors">
 {
     "*": { "x": 8, "y": 8 },
     "vehicles.boat": {"x": 4, "y": 3},
