@@ -1,8 +1,16 @@
 body {
     width: 70%;
     margin: 20px auto;
-    background-color: lightgray;
+    background-color: #b4dbff;
     max-width: 1000px;
+}
+
+body, input[type="button"] {
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type="button"] {
+    font-size: medium;
 }
 
 .input label,
@@ -12,6 +20,10 @@ body {
 
 #convert-button {
     min-width: 200px;
+}
+
+.excluded-sets {
+    width: 180px;
 }
 
 .highlight-text {
@@ -26,6 +38,15 @@ body {
     margin: 10px 0;
 }
 
+.CodeMirror, .editabletext, .editabletext:focus-visible {
+    border: 1px solid rgb(162 162 162);
+}
+
+.CodeMirror, .monospace {
+    font-family: 'Roboto Mono', monospace;
+    font-size: smaller;
+}
+
 .options .excluded-sets {
     min-height: 100px;
 }
@@ -34,9 +55,20 @@ body {
     margin-bottom: 20px;
 }
 
+.options label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bolder;
+}
+
+.options label:before {
+    content: '';
+}
+
 .icon-mapping, .icon-anchors {
     min-width: 320px;
 }
+
 .icon-anchors {
     min-height: 120px;
 }
@@ -45,18 +77,16 @@ body {
     display: inline-block;
     position: relative;
     background-color: white;
-    border: solid grey 1px;
-    width: 120px;
-    height: 18px;
+    width: 180px;
+    height: 21px;
 }
 
 .select-editable select {
     position: absolute;
     top: 0px;
     left: 0px;
-    font-size: 14px;
     border: none;
-    width: 120px;
+    width: 180px;
     margin: 0;
 }
 
@@ -64,9 +94,8 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100px;
+    width: 160px;
     padding: 1px;
-    font-size: 12px;
     border: none;
 }
 

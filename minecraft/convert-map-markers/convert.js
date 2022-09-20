@@ -87,10 +87,6 @@ function checkMaxCoordDistance(markerName, position, state) {
         return;
     }
 
-    if (markerName === 'marker_19') {
-        console.log('hi');
-    }
-
     var warnDistance = state.options.warnMaxCoordinateDistance;
     var isWithinWarnDistance =
         (position.x < 0 ? -1 * position.x : position.x) <= warnDistance &&
@@ -405,7 +401,7 @@ function loadOptions(ui) {
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
         iconMapping: ui.options.iconMapping.value,
         appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked,
-        warnMaxCoordinateDistance: false //100 * 1000
+        warnMaxCoordinateDistance: 1000 * 1000 // disabled by anything that is not a number
     };
 
     try {

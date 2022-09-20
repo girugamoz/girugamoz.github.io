@@ -1,17 +1,25 @@
 <html>
     <head>
+        <!-- yaml -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js" integrity="sha512-CwxrLIN0dww6lRc/oKeZiI9oGlOob2HPMU0Yu0g+P3/G1cuTii+tt0jpyEKhilfrV7D/zmvKiVPIHUDU6xbBxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- codemirror -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/yaml/yaml.min.js" integrity="sha512-+aXDZ93WyextRiAZpsRuJyiAZ38ztttUyO/H3FZx4gOAOv4/k9C6Um1CvHVtaowHZ2h7kH0d+orWvdBLPVwb4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js" integrity="sha512-I6CdJdruzGtvDyvdO4YsiAq+pkWf2efgd1ZUSK2FnM/u2VuRASPC7GowWQrWyjxCZn6CT89s3ddGI+be0Ak9Fg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <!-- fonts
+            https://fonts.google.com/specimen/Roboto+Mono?query=roboto
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet">
+        <!-- umami -->
         <script async defer
             src="https://umami.bavariancripple.de/umami.js"
             data-website-id="4e154ab2-ea24-4094-b59f-0afc8e07c5d7"
             data-domains="girugamoz.github.io"
         ></script>
-
+        <!-- marker converter -->
         <script src="./convert.js"></script>
         <link rel="stylesheet" href="./style.css">
 
@@ -28,7 +36,7 @@
             </div>
             <div class="input">
                 <h3>Input</h3>
-                <label for="input">Contents of DynMap <span class="highlight-text">markers.yml</span>: </label>
+                <label for="input">Contents of DynMap <span class="highlight-text">markers.yml</span></label>
                 <textarea name="input" class="source">
 %YAML 1.1
 ---
@@ -178,22 +186,22 @@ sets:
                 <h3>Options</h3>
 
                 <div class="row">
-                    <label for="world">World name: </label>
-                    <div class="select-editable">
-                        <select onchange="this.nextElementSibling.value=this.value">
+                    <label for="world">World name</label>
+                    <div class="select-editable editabletext">
+                        <select onchange="this.nextElementSibling.value=this.value" class="monospace">
                             <option value=""></option>
                             <option value="world">world</option>
                             <option value="world_nether">world_nether</option>
                             <option value="world_the_end">world_the_end</option>
                         </select>
-                        <input name="world" type="text" class="world" value="world">
+                        <input name="world" type="text" class="world monospace" value="world">
                     </div>
                     <div class="descr">DynMap <span class="highlight-text">markers.yml</span> contains markers from all worlds, choose one.</div>
                 </div>
 
                 <div class="row">
-                    <label for="world">Excluded sets: </label>
-                    <textarea name="excluded-sets" class="excluded-sets">
+                    <label for="world">Excluded sets</label>
+                    <textarea name="excluded-sets" class="excluded-sets monospace editabletext">
 offline_players
 spawn_beds
 </textarea>
@@ -201,13 +209,13 @@ spawn_beds
                 </div>
 
                 <div class="row">
-                    <label for="world">Marker icon mapping: </label>
-                    <input name="world" type="text" class="icon-mapping" value="assets/markers/%icon%.png">
+                    <label for="world">Marker icon mapping</label>
+                    <input name="world" type="text" class="icon-mapping monospace editabletext" value="assets/markers/%icon%.png">
                     <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
                 </div>
 
                 <div class="row">
-                    <label for="world">Icon anchor mapping: </label>
+                    <label for="world">Icon anchor mapping</label>
                     <textarea name="iconanchors" class="icon-anchors">
 {
     "*": { "x": 8, "y": 8 },
@@ -225,13 +233,13 @@ spawn_beds
                         <span class="highlight-text">anchor</span>. This configuration option uses JSON syntax to map DynMap icon names to BlueMap anchors. Fractions will be rounded to the nearest integer.
                         Optionally you can use the icon name <span class="highlight-text">*</span> to specify a default anchor for all POI marker icons.
                         <br>
-                        Imagemagick's <a href="https://imagemagick.org/script/identify.php">identify</a> tool can calculate the center of your icons, e.g. (don't forget to remove the last trailing comma if you use this command):
-                        <pre>identify -format '"%t": {"x": %[fx:w/2], "y": %[fx:h/2]},\n' *.png</pre>
+                        Imagemagick's <a href="https://imagemagick.org/script/identify.php">identify</a> tool can calculate the center of your icons, e.g. (don't forget to remove the last trailing comma from the output if you use this command):
+                        <pre class="monospace">identify -format '"%t": {"x": %[fx:w/2], "y": %[fx:h/2]},\n' *.png</pre>
                     </div>
                 </div>
 
                 <div class="row">
-                    <label for="append-marker-name-to-label">Append marker name to label: </label>
+                    <label for="append-marker-name-to-label">Append marker name to label</label>
                     <input name="append-marker-name-to-label" type="checkbox" class="append-marker-name-to-label">
                     <div class="descr">Useful for debugging and editing markers.</div>
                 </div>
@@ -239,7 +247,7 @@ spawn_beds
 
             <div class="output">
                 <h3>Output</h3>
-                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span>: </label>
+                <label for="output">BlueMap <span class="highlight-text">marker-sets</span> entry, paste this into <span class="highlight-text">world.conf</span></label>
                 <textarea name="output" class="source"></textarea>
             </div>
 
