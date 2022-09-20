@@ -194,14 +194,14 @@ sets:
                             <option value="world_nether">world_nether</option>
                             <option value="world_the_end">world_the_end</option>
                         </select>
-                        <input name="world" type="text" class="world monospace" value="world">
+                        <input name="world" type="text" class="world monospace" value="world" spellcheck="false">
                     </div>
                     <div class="descr">DynMap <span class="highlight-text">markers.yml</span> contains markers from all worlds, choose one.</div>
                 </div>
 
                 <div class="row">
                     <label for="world">Excluded sets</label>
-                    <textarea name="excluded-sets" class="excluded-sets monospace editabletext">
+                    <textarea name="excluded-sets" class="excluded-sets monospace editabletext" spellcheck="false">
 offline_players
 spawn_beds
 </textarea>
@@ -210,7 +210,7 @@ spawn_beds
 
                 <div class="row">
                     <label for="world">Marker icon mapping</label>
-                    <input name="world" type="text" class="icon-mapping monospace editabletext" value="assets/markers/%icon%.png">
+                    <input name="world" type="text" class="icon-mapping monospace editabletext" value="assets/markers/%icon%.png" spellcheck="false">
                     <div class="descr">The placeholder <span class="highlight-text">%icon%</span> is replaced with the icon name.</div>
                 </div>
 
