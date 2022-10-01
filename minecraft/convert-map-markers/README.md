@@ -1,6 +1,6 @@
 # Marker Converter
 
-Convert Minecraft map marker definitions from [DynMap](dynmap-marker-doc) to [BlueMap](bluemap-marker-doc).
+Convert Minecraft map marker definitions from [DynMap][dynmap-marker-doc] to [BlueMap][bluemap-marker-doc].
 
 Try it out here: https://girugamoz.github.io/minecraft/convert-map-markers/
 
