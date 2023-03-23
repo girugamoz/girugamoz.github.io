@@ -343,12 +343,15 @@ function convert(inputSource, options) {
     writeArrayElementsToObject(outputMarkerSetArray, '__set_name__', outputMarkerSets);
 
     var outputSource = state.options.prettyPrintOutput
-        ? '"marker-sets": ' + JSON.stringify(outputMarkerSets, null, 4) + '\n'
+        ? '"marker-sets": ' + JSON.stringify(outputMarkerSets, null, 4)
         : '"marker-sets":' + JSON.stringify(outputMarkerSets);
 
     finalizeStats(state.stats);
-    var statsText = formatStats(state.stats);
-    outputSource += '\n' + statsText + '\n';
+
+    if (state.options.outputConversionStatsAndMessages) {
+        var statsText = formatStats(state.stats);
+        outputSource += '\n\n' + statsText + '\n';
+    }
 
     return outputSource;
 }
@@ -408,6 +411,7 @@ function loadOptions(ui) {
         iconMapping: ui.options.iconMapping.value,
         appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked,
         prettyPrintOutput: !!ui.options.prettyPrintOutput.checked,
+        outputConversionStatsAndMessages: !!ui.options.outputConversionStatsAndMessages.checked,
         warnMaxCoordinateDistance: 1000 * 1000 // disabled by anything that is not a number
     };
 
@@ -469,6 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }),
             appendMarkerNameToLabel: document.querySelector('.options .append-marker-name-to-label'),
             prettyPrintOutput: document.querySelector('.options .pretty-print-output'),
+            outputConversionStatsAndMessages: document.querySelector('.options .output-conversion-stats-and-messages')
         },
         convertButton: document.querySelector('#convert-button')
     };
