@@ -117,24 +117,40 @@ function convertCoordArrays(xArray, yArray, zArray) {
 }
 
 
-function createOutputMarker(inputMarker, outputMarkerType, state) {
+function createOutputMarker(inputMarker, outputMarkerType, state, checkForIcon) {
     var outputMarker = {
         __marker_name__: inputMarker.__marker_name__,
         type: outputMarkerType
     }
 
+    if (checkForIcon) {
+        var inputIcon = state.defaultInputIcon;
+        if (!!inputMarker.icon && inputMarker.icon !== 'default') {
+            inputIcon = inputMarker.icon;
+        }
+        if (inputIcon) {
+            outputMarker.icon = state.options.mapIconName(inputIcon);
+            var iconAnchor = state.options.getIconAnchor(inputIcon);
+            if (iconAnchor) {
+                outputMarker.anchor = iconAnchor;
+            }
+        }
+    }
+
     if (inputMarker.label) {
         outputMarker.label = inputMarker.label;
-        if (state.options.appendMarkerNameToLabel) {
-            outputMarker.label += ' (' + inputMarker.__marker_name__ + ')';
-        }
+    } else if (inputIcon) {
+        // TODO: var iconLabel = state.getIconLabel(inputIcon);
+    }
+    if (state.options.appendMarkerNameToLabel) {
+        outputMarker.label = (outputMarker.label + ' (' + inputMarker.__marker_name__ + ')').trim();
     }
 
     return outputMarker;
 }
 
 function convertSimpleMarker(inputMarker, state) {
-    var outputMarker = createOutputMarker(inputMarker, 'poi', state);
+    var outputMarker = createOutputMarker(inputMarker, 'poi', state, true);
     var position = {
         x: inputMarker.x,
         y: inputMarker.y,
@@ -145,23 +161,11 @@ function convertSimpleMarker(inputMarker, state) {
 
     outputMarker.position = position;
 
-    var inputIcon = state.defaultInputIcon;
-    if (!!inputMarker.icon && inputMarker.icon !== 'default') {
-        inputIcon = inputMarker.icon;
-    }
-    if (inputIcon) {
-        outputMarker.icon = state.options.mapIconName(inputIcon);
-        var iconAnchor = state.options.getIconAnchor(inputIcon);
-        if (iconAnchor) {
-            outputMarker.anchor = iconAnchor;
-        }
-    }
-
     return outputMarker;
 }
 
 function convertComplexMarker(inputMarker, outputMarkerType, state) {
-    var outputMarker = createOutputMarker(inputMarker, outputMarkerType, state);
+    var outputMarker = createOutputMarker(inputMarker, outputMarkerType, state, false);
 
     if (inputMarker.strokeWeight) {
         outputMarker['line-width'] = inputMarker.strokeWeight;
@@ -338,7 +342,9 @@ function convert(inputSource, options) {
     var outputMarkerSets = {};
     writeArrayElementsToObject(outputMarkerSetArray, '__set_name__', outputMarkerSets);
 
-    var outputSource = '"marker-sets": ' + JSON.stringify(outputMarkerSets, null, 4) + '\n';
+    var outputSource = state.options.prettyPrintOutput
+        ? '"marker-sets": ' + JSON.stringify(outputMarkerSets, null, 4) + '\n'
+        : '"marker-sets":' + JSON.stringify(outputMarkerSets);
 
     finalizeStats(state.stats);
     var statsText = formatStats(state.stats);
@@ -401,6 +407,7 @@ function loadOptions(ui) {
         excludedSets: trimLines(ui.options.excludedSets.value.split('\n')),
         iconMapping: ui.options.iconMapping.value,
         appendMarkerNameToLabel: !!ui.options.appendMarkerNameToLabel.checked,
+        prettyPrintOutput: !!ui.options.prettyPrintOutput.checked,
         warnMaxCoordinateDistance: 1000 * 1000 // disabled by anything that is not a number
     };
 
@@ -461,6 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 lineNumbers: true
             }),
             appendMarkerNameToLabel: document.querySelector('.options .append-marker-name-to-label'),
+            prettyPrintOutput: document.querySelector('.options .pretty-print-output'),
         },
         convertButton: document.querySelector('#convert-button')
     };
